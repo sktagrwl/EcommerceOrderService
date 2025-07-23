@@ -10,17 +10,16 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class ProductServiceClient {
 
-    private final RestTemplateBuilder restTemplateBuilder;
+    private final RestTemplate restTemplate;
 
-    public ProductServiceClient(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplateBuilder = restTemplateBuilder;
+    public ProductServiceClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     public ProductDTO getProductById(Long productId){
-        RestTemplate restTemplate = restTemplateBuilder.build();
 
-        //not the best way > Service Discovery > Netflix Eureka
-        String url ="http://localhost:3000/api/products/id/" + productId;
+        //Service Discovery > Netflix Eureka
+        String url ="http://ECOMMERCE/api/products/id/" + productId;
 
         ResponseEntity<ProductDTO> response = restTemplate.getForEntity(url, ProductDTO.class);
         return response.getBody();

@@ -17,11 +17,8 @@ import java.util.List;
 public class Order extends BaseEntity{
 
     private Long userId;
-
-
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items;
 }

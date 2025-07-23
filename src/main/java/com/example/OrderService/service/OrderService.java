@@ -54,11 +54,8 @@ public class OrderService implements IOrderService{
             items.add(item);
 
         }
-
         order.setItems(items);
-
         Order createdOrder = orderRepository.save(order);
-
         return OrderMapper.toCreateOrderResponseDTO(createdOrder);
 
 
